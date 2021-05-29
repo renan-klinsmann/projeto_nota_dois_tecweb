@@ -61,7 +61,7 @@ public class ContatosServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
-		
+		try {
 		String name  = request.getParameter("name"); 
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
@@ -74,12 +74,16 @@ public class ContatosServlet extends HttpServlet {
 		client.setPhone(phone);
 		client.setSenha(senha);
 		
-		this.serviceClient.save(client);
+		if(this.serviceClient.save(client)) {
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/contatos/list_client.jsp");
 		request.setAttribute("sucesso", "Cadastro salvo com sucesso");
 		request.setAttribute("clients", this.serviceClient.getAll());
 		rd.forward(request, response);
-			
+			}
+		}catch (Exception e){
+			System.out.println(e.toString());
+			response.sendRedirect("admin/primeiroAcesso.jsp");
+		}
 		
 	}
 }

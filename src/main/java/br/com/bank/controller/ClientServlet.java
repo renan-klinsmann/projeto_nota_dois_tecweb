@@ -16,12 +16,10 @@ import br.com.bank.service.ClientServiceImpl;
 public class ClientServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private Client client;
 	private ClientServiceImpl service;
 
 	public ClientServlet() {
 		this.service = new ClientServiceImpl();
-		this.client = new Client();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -69,12 +67,8 @@ public class ClientServlet extends HttpServlet {
 		String phone = request.getParameter("phone");
 		String senha = request.getParameter("senha");
 		
-		 if (name == null || email == null || senha == null || phone == null) {
-             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-             return;
-         }
 
-		// MONTEI O MEU OBJETO CLIENT
+		Client client = new Client();
 		client.setName(name);
 		client.setEmail(email);
 		client.setPhone(phone);
@@ -83,7 +77,7 @@ public class ClientServlet extends HttpServlet {
 		// SALVAR O MEU CLIENT
 			if (this.service.save(client)) {
 	            response.setStatus(HttpServletResponse.SC_OK);
-	            response.sendRedirect("admin/login.jsp");
+	            response.sendRedirect("index.jsp");
 			} 
 		} catch (Exception e){
 			System.out.println(e.toString());

@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("email", email);
 			request.getRequestDispatcher("admin/dashboard/index.jsp").forward(request, response);
 		} else {
-			response.sendRedirect("admin/login.jsp");
+			response.sendRedirect("index.jsp");
 		}
 		
 	}
@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
         if (session != null) {
             session.invalidate();
         }
-        response.sendRedirect("admin/login.jsp");
+        response.sendRedirect("index.jsp");
     }
 
 }

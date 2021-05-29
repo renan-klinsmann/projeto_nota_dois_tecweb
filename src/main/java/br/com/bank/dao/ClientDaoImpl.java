@@ -60,8 +60,16 @@ public class ClientDaoImpl implements ClientDao {
 		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
 		entityManager.getTransaction().begin();
 		
+		List<Client> clientList = null;
+		clientList = getAll();
+				
 		try {
 			
+			for(Client clientConf : clientList) {
+				if(clientConf.getEmail().contains(client.getEmail()) || client.getPhone().contains(clientConf.getPhone())) {
+					return false;
+				}
+			}
 			entityManager.persist(client);
 			entityManager.getTransaction().commit();
 			entityManager.close();
