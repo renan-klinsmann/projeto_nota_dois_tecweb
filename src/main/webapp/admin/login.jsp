@@ -118,6 +118,11 @@
 <div class="container">
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
+			
+   				<c:if test="${not empty erro}">
+   					<div class="alert alert-danger">${erro}</div>
+   				</c:if>
+           
 			<div class="card-header">
 				<h3>Bank Acme</h3>
 				<div class="d-flex justify-content-end social_icon">

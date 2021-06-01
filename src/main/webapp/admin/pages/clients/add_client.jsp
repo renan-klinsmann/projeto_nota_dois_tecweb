@@ -16,7 +16,7 @@
                   <p class="card-category">Preencha os campos</p>
                 </div>
                 <div class="card-body">
-                  <form action="${pageContext.request.contextPath}/contatosServlet" Method="post">
+                  <form action="${pageContext.request.contextPath}/clientServlet?acao=salvarUsuario" Method="post">
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
@@ -39,7 +39,7 @@
                       <div class="col-md-12">
                         <div class="form-group">
                           <label class="bmd-label-floating">Senha</label>
-                          <input type="password" name="password" class="form-control" maxlength="50" required="required">
+                          <input type="text" name="senha" class="form-control" maxlength="50" required="required">
                         </div>
                       </div>
                     </div>

@@ -70,50 +70,89 @@ public class ClientServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		
-		try {
-		// PEGA OS DADOS DO REQUEST
-		String name = request.getParameter("name");
-		String email = request.getParameter("email");
-		String phone = request.getParameter("phone");
-		String senha = request.getParameter("senha");
-		
-
-		Client client = new Client();
-		client.setName(name);
-		client.setEmail(email);
-		client.setPhone(phone);
-		client.setSenha(senha);
-
-		// SALVAR O MEU CLIENT
-			if (this.service.save(client)) {
-	            response.setStatus(HttpServletResponse.SC_OK);
-	            response.sendRedirect("index.jsp");
-			} 
-		} catch (Exception e){
-			System.out.println(e.toString());
-			response.sendRedirect("admin/primeiroAcesso.jsp");
-		}
-		
 		String acao = request.getParameter("acao");
 		
 		if(acao  != null) {
+			switch (acao) {
+			
+			case "salvarEdicao":
 			String idS = request.getParameter("id");
 			String name = request.getParameter("name");
 			String email = request.getParameter("email");
 			String phone = request.getParameter("phone");
+			String senha = request.getParameter("senha");
 			
 			Client client = new Client();
 			client.setId(Long.parseLong(idS));
 			client.setName(name);
 			client.setEmail(email);
 			client.setPhone(phone);
+			client.setSenha(senha);
 			
 			if (this.service.update(client)) {
 				RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/clients/list_client.jsp");				
 				request.setAttribute("sucesso", "Edição concluida com sucesso");
 				request.setAttribute("clients", this.service.getAll());
 				rd.forward(request, response);
+				}
+			break;
+			
+			case "salvarUsuario":
+			try {
+				
+				String nameU  = request.getParameter("name"); 
+				String emailU = request.getParameter("email");
+				String phoneU = request.getParameter("phone");
+				String senhaU = request.getParameter("password");
+				
+				//MONTEI O MEU OBJETO CLIENT
+				Client clientU = new Client();
+				clientU.setName(nameU);
+				clientU.setEmail(emailU);
+				clientU.setPhone(phoneU);
+				clientU.setSenha(senhaU);
+				
+				if(this.service.save(clientU)) {
+				RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/clients/list_client.jsp");
+				request.setAttribute("sucesso", "Usuario salvo com sucesso");
+				request.setAttribute("clients", this.service.getAll());
+				rd.forward(request, response);
+					}
+				}catch (Exception e){
+					System.out.println(e.toString());
+				}
+				break;
+					
 			}
+		} else {
+			try {
+				// PEGA OS DADOS DO REQUEST
+				String name = request.getParameter("name");
+				String email = request.getParameter("email");
+				String phone = request.getParameter("phone");
+				String senha = request.getParameter("senha");
+				
+
+				Client client = new Client();
+				client.setName(name);
+				client.setEmail(email);
+				client.setPhone(phone);
+				client.setSenha(senha);
+
+				// SALVAR O MEU CLIENT
+					if (this.service.save(client)) {
+			            response.setStatus(HttpServletResponse.SC_OK);
+			            response.sendRedirect("index.jsp");
+					} else {
+						RequestDispatcher rd = request.getRequestDispatcher("admin/primeiroAcesso.jsp");				
+						request.setAttribute("erro", "Email ou telefone ja cadastrados");
+						rd.forward(request, response);
+						response.sendRedirect("admin/primeiroAcesso.jsp");
+					}
+				} catch (Exception e){
+					System.out.println(e.toString());
+					response.sendRedirect("admin/primeiroAcesso.jsp");
+				}
 		}
 		
 		

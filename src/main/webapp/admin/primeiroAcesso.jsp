@@ -118,6 +118,9 @@
 <div class="container">
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
+   				<c:if test="${not empty erro}">
+   					<div class="alert alert-danger">${erro}</div>
+   				</c:if>
 			<div class="card-header">
 				<h3>Bank Acme</h3>
 				<div class="d-flex justify-content-end social_icon">
@@ -152,7 +155,7 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" name="senha" class="form-control">
+						<input type="text" name="senha" class="form-control">
 					</div>
 					<div class="form-group">
 						<input type="submit" value="Save" class="btn float-right login_btn">

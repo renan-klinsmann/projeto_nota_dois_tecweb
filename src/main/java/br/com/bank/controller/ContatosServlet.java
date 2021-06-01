@@ -76,7 +76,7 @@ public class ContatosServlet extends HttpServlet {
 		
 		if(this.serviceClient.save(client)) {
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/clients/list_client.jsp");
-		request.setAttribute("sucesso", "Usuario salvo com sucesso");
+		request.setAttribute("sucesso", "Cadastro salvo com sucesso");
 		request.setAttribute("clients", this.serviceClient.getAll());
 		rd.forward(request, response);
 			}

@@ -2,6 +2,7 @@ package br.com.bank.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,6 +39,9 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("email", email);
 			request.getRequestDispatcher("admin/dashboard/index.jsp").forward(request, response);
 		} else {
+			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");				
+			request.setAttribute("erro", "Email ou senha invalidos");
+			rd.forward(request, response);
 			response.sendRedirect("index.jsp");
 		}
 		

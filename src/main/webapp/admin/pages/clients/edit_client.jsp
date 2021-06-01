@@ -41,6 +41,12 @@
                           <input type="text" name="phone" class="form-control" value="${client.phone}" maxlength="50" required="required">
                         </div>
                       </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Senha</label>
+                          <input type="text" name="senha" class="form-control" value="${client.senha}" maxlength="50" required="required">
+                        </div>
+                      </div>
                    
                     </div>
                     
