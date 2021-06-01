@@ -38,6 +38,50 @@ public class ClientDaoImpl implements ClientDao {
 		
 		return null;
 	}
+	
+	@Override
+	public Client getClientId(Long id) {
+		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+		
+		try {
+			
+			Client client = entityManager.createNamedQuery("Client.getById", Client.class)
+					.setParameter("id", id)
+					.getSingleResult();
+			
+			return client;
+			
+		}catch (NoResultException e) {
+			e.getMessage();
+			entityManager.close();
+		}
+		
+		return null;
+	}
+	
+	@Override
+	public boolean update(Client client) {
+		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+
+			try {
+						
+						 client.setEmail(client.getEmail());
+			        	 client.setName(client.getName());
+			        	 client.setPhone(client.getPhone());
+			        	 entityManager.merge(client);
+			
+			return true;
+			
+		}catch (NoResultException e) {
+			e.getMessage();
+			entityManager.close();
+		}
+		
+		return false;
+	}
+
 
 	@Override
 	public List<Client> getAll() {

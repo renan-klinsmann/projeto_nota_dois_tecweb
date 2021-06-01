@@ -26,10 +26,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 
-@Entity
+@Entity 
 @Table(name ="clients")
 @NamedQuery(name ="Client.getByName", query = "select c from Client c where c.email = :email and c.senha = :senha")
 @NamedQuery(name ="Client.getAll", query = "select c from Client c")
+@NamedQuery(name ="Client.getById", query = "select c from Client c where c.id = :id")
+@NamedQuery(name ="Client.update", query = "UPDATE Client SET name = :email, email = :email, phone = :phone  where id = :id")
 public class Client {
 
 	@Id

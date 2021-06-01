@@ -31,7 +31,7 @@ public class ClientServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		try {
 			service.deleteById(Long.parseLong(id));
-			RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/contatos/list_client.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/clients/list_client.jsp");
 			request.setAttribute("sucesso", "Cadastro excluido com sucesso");
 			request.setAttribute("clients", this.service.getAll());
 			rd.forward(request, response);
@@ -42,10 +42,19 @@ public class ClientServlet extends HttpServlet {
 		break;
 		
 	case "editar":
+		String idEdit = request.getParameter("id");
+		try {
+			RequestDispatcher rdEdit = request.getRequestDispatcher("/admin/pages/clients/edit_client.jsp");
+			request.setAttribute("client", this.service.getClientId(Long.parseLong(idEdit)));
+			rdEdit.forward(request, response);
+		}catch (Exception e) {
+			e.toString();
+		}
+		break;
 		
 	case "listar":
 		try {
-		RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/contatos/list_client.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/clients/list_client.jsp");
 		request.setAttribute("clients", this.service.getAll());
 		rd.forward(request, response);
 			} catch (Exception e) {
@@ -59,6 +68,7 @@ public class ClientServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		
 		try {
 		// PEGA OS DADOS DO REQUEST
@@ -83,6 +93,32 @@ public class ClientServlet extends HttpServlet {
 			System.out.println(e.toString());
 			response.sendRedirect("admin/primeiroAcesso.jsp");
 		}
+		
+		String acao = request.getParameter("acao");
+		
+		if(acao  != null) {
+			String idS = request.getParameter("id");
+			String name = request.getParameter("name");
+			String email = request.getParameter("email");
+			String phone = request.getParameter("phone");
+			
+			Client client = new Client();
+			client.setId(Long.parseLong(idS));
+			client.setName(name);
+			client.setEmail(email);
+			client.setPhone(phone);
+			
+			if (this.service.update(client)) {
+				RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/clients/list_client.jsp");
+				request.setAttribute("clients", this.service.getAll());
+				rd.forward(request, response);
+			}
+		}
+		
+		
+		
 	}
+	
+	
 
 }

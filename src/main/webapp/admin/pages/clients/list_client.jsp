@@ -49,9 +49,10 @@
                         	</tr>
 					     
                         </c:forEach>
-                         <a class="btn btn-sucesso" id="btn_cadastro" href="${pageContext.request.contextPath}/admin/pages/contatos/add_client.jsp">
+                         <a class="btn btn-sucesso" id="btn_cadastro" href="${pageContext.request.contextPath}/admin/pages/clients/add_client.jsp">
                         					<c:out value="Cadastrar Novo"/>
                         			</a>
+               
                       </tbody>
                     </table>
                   </div>

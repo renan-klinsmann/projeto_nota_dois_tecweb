@@ -24,6 +24,11 @@ public class ClientServiceImpl implements ClientService {
 	public Client getClient(String email, String senha) {
 		return this.dao.getClient(email, senha);
 	}
+	
+	@Override
+	public Client getClientId(Long id) {
+		return this.dao.getClientId(id);
+	}
 
 	@Override
 	public List<Client> getAll() {
@@ -33,6 +38,11 @@ public class ClientServiceImpl implements ClientService {
 	@Override
 	public boolean save(Client client) {
 		return this.dao.save(client);
+	}
+	
+	@Override
+	public boolean update(Client client) {
+		return this.dao.update(client);
 	}
 
 	@Override

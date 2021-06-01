@@ -51,7 +51,7 @@ public class ContatosServlet extends HttpServlet {
 		case "editar":
 			
 		case "listar":
-			RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/contatos/list_client.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/clients/list_client.jsp");
 			request.setAttribute("contatos", this.service.list());
 			rd.forward(request, response);
 		}
@@ -75,7 +75,7 @@ public class ContatosServlet extends HttpServlet {
 		client.setSenha(senha);
 		
 		if(this.serviceClient.save(client)) {
-		RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/contatos/list_client.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/clients/list_client.jsp");
 		request.setAttribute("sucesso", "Cadastro salvo com sucesso");
 		request.setAttribute("clients", this.serviceClient.getAll());
 		rd.forward(request, response);
