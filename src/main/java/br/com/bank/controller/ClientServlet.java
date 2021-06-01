@@ -32,7 +32,7 @@ public class ClientServlet extends HttpServlet {
 		try {
 			service.deleteById(Long.parseLong(id));
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/clients/list_client.jsp");
-			request.setAttribute("sucesso", "Cadastro excluido com sucesso");
+			request.setAttribute("sucesso", "Usuario excluido com sucesso");
 			request.setAttribute("clients", this.service.getAll());
 			rd.forward(request, response);
 		} catch (Exception e) {
@@ -109,7 +109,8 @@ public class ClientServlet extends HttpServlet {
 			client.setPhone(phone);
 			
 			if (this.service.update(client)) {
-				RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/clients/list_client.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/admin/pages/clients/list_client.jsp");				
+				request.setAttribute("sucesso", "Edição concluida com sucesso");
 				request.setAttribute("clients", this.service.getAll());
 				rd.forward(request, response);
 			}

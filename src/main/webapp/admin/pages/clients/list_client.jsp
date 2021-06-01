@@ -40,7 +40,7 @@
                         			</a>
                         		</td>	
                         		<td>
-                        			<a class="btn btn-primary" 
+                        			<a id="btn_editar" class="btn btn-primary" 
                         					href="${pageContext.request.contextPath}/clientServlet?id=${client.id}&acao=editar">
                         					<c:out value="Editar"/>
                         			</a>

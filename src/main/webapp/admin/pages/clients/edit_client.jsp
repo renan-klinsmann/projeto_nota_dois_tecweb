@@ -19,8 +19,13 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
+                          <label class="bmd-label-floating">Id</label>
+                          <input type="text" name="id" class="form-control" value="${client.id}" maxlength="30" readonly required>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
                           <label class="bmd-label-floating">Nome</label>
-                          <input type="hidden" name="id" class="form-control" value="${client.id}" maxlength="30" required="required">
                           <input type="text" name="name" class="form-control" value="${client.name}" maxlength="30" required="required">
                         </div>
                       </div>

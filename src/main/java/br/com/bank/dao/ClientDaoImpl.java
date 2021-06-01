@@ -66,11 +66,8 @@ public class ClientDaoImpl implements ClientDao {
 		entityManager.getTransaction().begin();
 
 			try {
-						
-						 client.setEmail(client.getEmail());
-			        	 client.setName(client.getName());
-			        	 client.setPhone(client.getPhone());
 			        	 entityManager.merge(client);
+			        	 entityManager.getTransaction().commit();
 			
 			return true;
 			
