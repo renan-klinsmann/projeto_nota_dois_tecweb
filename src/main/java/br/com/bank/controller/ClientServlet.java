@@ -103,7 +103,7 @@ public class ClientServlet extends HttpServlet {
 				String nameU  = request.getParameter("name"); 
 				String emailU = request.getParameter("email");
 				String phoneU = request.getParameter("phone");
-				String senhaU = request.getParameter("password");
+				String senhaU = request.getParameter("senha");
 				
 				//MONTEI O MEU OBJETO CLIENT
 				Client clientU = new Client();
